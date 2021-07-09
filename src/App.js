@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import "./App.scss";
+import OpenFile from "./components/OpenFile";
+import Player from "./components/Player";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  state = {
+    sheet: null,
+  }
+
+  onChangeFile(sheet) {
+    this.setState({ sheet: sheet });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header"></header>
+        <main>
+          <OpenFile onChangeFile={this.onChangeFile.bind(this)} />
+          <Player sheet={this.state.sheet} />
+        </main>
+      </div>
+    );
+  }
 }
-
-export default App;
