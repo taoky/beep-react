@@ -24,7 +24,7 @@ export default class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>BeepPlay in Web (PoC)</h1>
-          <p><a href="https://github.com/taoky/beep-react">Source code</a></p>
+          <a href="https://github.com/taoky/beep-react">Source code</a>
           <p>Original project: <a href='https://github.com/iBug/CGadgets/tree/master/BeepPlay'>BeepPlay in Win32 API</a></p>
         </header>
         <main>

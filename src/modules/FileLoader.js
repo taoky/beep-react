@@ -25,7 +25,7 @@ export default class FileLoader extends Component {
 
   parse(text) {
     const lines = text.split("\n");
-    const configuration = lines[0].split(" ");
+    const configuration = lines[0].split(/[ ,]+/);
     const bpm = parseFloat(configuration[0]);
     const off = parseInt(configuration[1]);
     const notes = [];
@@ -34,7 +34,7 @@ export default class FileLoader extends Component {
       if (line.length === 0 || line[0] === "#") {
         continue;
       }
-      const nodeInfo = line.split(" ");
+      const nodeInfo = line.split(/[ ,]+/);
       const pitch = parseInt(nodeInfo[0]);
       const octave = parseInt(nodeInfo[1]);
       const duration = parseInt(nodeInfo[2]);
