@@ -9,6 +9,7 @@ export default class FileLoader extends Component {
       "Determination",
       "Dogsong",
       "Doki Doki Literature Club",
+      "Eternal East Wind",
       "Grasswalk",
       "Nagisa",
       "Nuit Silencieuse",
