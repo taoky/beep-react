@@ -44,11 +44,11 @@ export default class Player extends Component {
     const oscillator = audioCtx.createOscillator();
     this.oscillator = oscillator;
 
-    oscillator.type = "square";
+    oscillator.type = "sine";
     oscillator.frequency.value = frequency;
     oscillator.connect(this.gainNode).connect(audioCtx.destination);
     oscillator.onended = callback;
-    oscillator.start(0);
+    oscillator.start();
     oscillator.stop(audioCtx.currentTime + duration);
   }
 
