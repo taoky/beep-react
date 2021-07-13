@@ -101,8 +101,10 @@ export default class Player extends Component {
   }
 
   pause() {
-    this.oscillator.onended = undefined;
-    this.oscillator.stop();
+    if (this.oscillator) {
+      this.oscillator.onended = undefined;
+      this.oscillator.stop();
+    }
     this.setState({ playing: false });
   }
 
