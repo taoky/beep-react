@@ -61,6 +61,17 @@ export default class App extends Component {
             readOnly
             style={{ width: "80%", height: "50vh" }}
           ></textarea>
+          <div>
+            <button
+              onClick={() => {
+                this.setState({
+                  consoleText: "",
+                });
+              }}
+            >
+              Clear output
+            </button>
+          </div>
         </main>
       </div>
     );
