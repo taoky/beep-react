@@ -16,6 +16,7 @@ export default class FileLoader extends Component {
       "Okay Everyone",
       "Once Upon A Time",
       "Orange",
+      "Distortion",
     ];
     this.state = {
       filename: null,
@@ -27,6 +28,9 @@ export default class FileLoader extends Component {
   parse(text) {
     const lines = text.split("\n");
     const configuration = lines[0].split(/[ ,]+/);
+    if (configuration.length !== 2) {
+      throw new Error("Missing bpm and off in given file.");
+    }
     const bpm = parseFloat(configuration[0]);
     const off = parseInt(configuration[1]);
     const notes = [];
