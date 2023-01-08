@@ -29,7 +29,7 @@ export default class Player extends Component {
     this.key_ref = new Key(0, 4); // C4
     this.state = {
       volume: 0.5,
-      oscillatorType: "square",
+      oscillatorType: "sine",
       playing: false,
     };
   }
