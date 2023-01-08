@@ -29,7 +29,6 @@ export default class Player extends Component {
     this.key_ref = new Key(0, 4); // C4
     this.state = {
       volume: 0.5,
-      consoleText: "",
       oscillatorType: "square",
       playing: false,
     };
@@ -76,11 +75,9 @@ export default class Player extends Component {
           .plus(-this.key_ref.abs())
           .abs();
         const frequency = this.freq_ref * Math.pow(2, (1 / 12) * key_abs);
-        this.setState({
-          consoleText:
-            this.state.consoleText +
-            `${note[0]} Note ${note[1]} Frequency ${frequency} Duration ${duration}\n`,
-        });
+        this.props.writeConsole(
+            `${note[0]} Note ${note[1]} Frequency ${frequency} Duration ${duration}`,
+        );
         playNote(frequency, duration, playMelody);
       }
     };
@@ -149,11 +146,6 @@ export default class Player extends Component {
           <option value="sawtooth">Sawtooth</option>
           <option value="triangle">Triangle</option>
         </select>
-        <textarea
-          value={this.state.consoleText}
-          readOnly
-          style={{ width: "80%", height: "50vh" }}
-        ></textarea>
       </div>
     );
   }

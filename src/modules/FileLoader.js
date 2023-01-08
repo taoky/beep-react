@@ -55,8 +55,10 @@ export default class FileLoader extends Component {
           const off = file[1];
           const notes = file[2];
           this.props.onChangeFile(bpm, off, notes);
+          this.props.writeConsole("File loaded successfully.");
         } catch (e) {
           console.error(e);
+          this.props.writeConsole(`File loaded failed: ${e}`);
         }
       };
       reader.readAsText(this.state.filename, "utf-8");
@@ -71,9 +73,13 @@ export default class FileLoader extends Component {
           const off = file[1];
           const notes = file[2];
           this.props.onChangeFile(bpm, off, notes);
+          this.props.writeConsole(
+            `Example ${this.state.exampleName} loaded successfully.`
+          );
         })
         .catch((error) => {
           console.error(error);
+          this.props.writeConsole(`Example loaded failed: ${error}`);
         });
     }
   };
