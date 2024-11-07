@@ -17,6 +17,7 @@ export default class FileLoader extends Component {
       "Once Upon A Time",
       "Orange",
       "Distortion",
+      "Haruhikage",
     ];
     this.state = {
       filename: null,
@@ -27,14 +28,21 @@ export default class FileLoader extends Component {
 
   parse(text) {
     const lines = text.split("\n");
-    const configuration = lines[0].split(/[ ,]+/);
+    let idx = 0;
+    while (idx < lines.length && (lines[idx].length === 0 || lines[idx][0] === "#")) {
+      idx++;
+    }
+    if (idx === lines.length) {
+      throw new Error("Empty file?");
+    }
+    const configuration = lines[idx].split(/[ ,]+/);
     if (configuration.length !== 2) {
       throw new Error("Missing bpm and off in given file.");
     }
     const bpm = parseFloat(configuration[0]);
     const off = parseInt(configuration[1]);
     const notes = [];
-    for (let i = 1; i < lines.length; i++) {
+    for (let i = idx + 1; i < lines.length; i++) {
       const line = lines[i].trim();
       if (line.length === 0 || line[0] === "#") {
         continue;
