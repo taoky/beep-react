@@ -140,33 +140,55 @@ const Player: React.FC<PlayerProps> = ({
   };
 
   return (
-    <div className="player">
-      {playing ? (
-        <button onClick={pause}>Pause</button>
-      ) : (
-        <button onClick={createPlay}>Play</button>
-      )}
-      <label htmlFor="volume">Volume</label>
-      <input
-        name="volume"
-        type="range"
-        id="volume"
-        value={volume}
-        onChange={(e) => setGain(parseFloat(e.target.value))}
-        min={0}
-        max={1}
-        step={0.01}
-      />
+    <div className="p-6 bg-white rounded-md shadow-md space-y-4">
+      <div>
+        {playing ? (
+          <button
+            onClick={pause}
+            className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+          >
+            Pause
+          </button>
+        ) : (
+          <button
+            onClick={createPlay}
+            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+          >
+            Play
+          </button>
+        )}
+      </div>
 
-      <select
-        value={oscillatorType}
-        onChange={(e) => setOscillatorType(e.target.value as OscillatorType)}
-      >
-        <option value="square">Square</option>
-        <option value="sine">Sine</option>
-        <option value="sawtooth">Sawtooth</option>
-        <option value="triangle">Triangle</option>
-      </select>
+      <div className="flex flex-col">
+        <label htmlFor="volume" className="mb-1 font-medium">
+          Volume
+        </label>
+        <input
+          name="volume"
+          type="range"
+          id="volume"
+          value={volume}
+          onChange={(e) => setGain(parseFloat(e.target.value))}
+          min={0}
+          max={1}
+          step={0.01}
+          className="w-full"
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label className="mb-1 font-medium">Oscillator Type</label>
+        <select
+          value={oscillatorType}
+          onChange={(e) => setOscillatorType(e.target.value as OscillatorType)}
+          className="border border-gray-300 rounded px-3 py-2"
+        >
+          <option value="square">Square</option>
+          <option value="sine">Sine</option>
+          <option value="sawtooth">Sawtooth</option>
+          <option value="triangle">Triangle</option>
+        </select>
+      </div>
     </div>
   );
 };

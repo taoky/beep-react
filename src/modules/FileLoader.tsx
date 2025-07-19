@@ -110,30 +110,35 @@ const FileLoader: React.FC<FileLoaderProps> = ({
   };
 
   return (
-    <div className="loader">
-      <div>
-        <label htmlFor="example">Example</label>
-        <input
-          type="radio"
-          value="example"
-          name="example"
-          checked={option === "example"}
-          onChange={() => setOption("example")}
-        />
-        <label htmlFor="file">File</label>
-        <input
-          type="radio"
-          value="file"
-          name="example"
-          checked={option === "file"}
-          onChange={() => setOption("file")}
-        />
+    <div className="p-6 bg-white rounded-md shadow-md space-y-4">
+      <div className="flex items-center gap-4 flex-wrap">
+        <label className="flex items-center gap-2">
+          <input
+            type="radio"
+            value="example"
+            name="example"
+            checked={option === "example"}
+            onChange={() => setOption("example")}
+          />
+          Example
+        </label>
+        <label className="flex items-center gap-2">
+          <input
+            type="radio"
+            value="file"
+            name="example"
+            checked={option === "file"}
+            onChange={() => setOption("file")}
+          />
+          File
+        </label>
       </div>
 
       {option === "example" ? (
         <select
           onChange={(e) => setExampleName(e.target.value)}
           value={exampleName}
+          className="border border-gray-300 rounded px-3 py-2"
         >
           {exampleList.map((example) => (
             <option key={example} value={example}>
@@ -142,19 +147,27 @@ const FileLoader: React.FC<FileLoaderProps> = ({
           ))}
         </select>
       ) : (
-        <div>
-          <label htmlFor="fileInput">Choose file:</label>
+        <div className="flex flex-col">
+          <label className="mb-1 font-medium" htmlFor="fileInput">
+            Choose file:
+          </label>
           <input
             type="file"
             id="fileInput"
             onChange={(e) =>
               setFilename(e.target.files ? e.target.files[0] : null)
             }
+            className="border border-gray-300 px-2 py-1 rounded"
           />
         </div>
       )}
 
-      <button onClick={load}>Load</button>
+      <button
+        onClick={load}
+        className="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+      >
+        Load
+      </button>
     </div>
   );
 };
