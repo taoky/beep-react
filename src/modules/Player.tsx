@@ -127,7 +127,7 @@ const Player: React.FC<PlayerProps> = ({
 
   const createPlay = async () => {
     if (!audioContextRef.current) {
-      audioContextRef.current = new (window.AudioContext)();
+      audioContextRef.current = new window.AudioContext();
       gainNodeRef.current = audioContextRef.current.createGain();
       gainNodeRef.current.gain.value = volume;
     }

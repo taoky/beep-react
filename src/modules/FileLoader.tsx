@@ -6,22 +6,25 @@ interface FileLoaderProps {
   writeConsole: (msg: string) => void;
 }
 
-const FileLoader: React.FC<FileLoaderProps> = ({ onChangeFile, writeConsole }) => {
+const FileLoader: React.FC<FileLoaderProps> = ({
+  onChangeFile,
+  writeConsole,
+}) => {
   const exampleList = [
-      "Dango Daikazoku",
-      "Determination",
-      "Dogsong",
-      "Doki Doki Literature Club",
-      "Eternal East Wind",
-      "Grasswalk",
-      "Nagisa",
-      "Nuit Silencieuse",
-      "Okay Everyone",
-      "Once Upon A Time",
-      "Orange",
-      "Distortion",
-      "Haruhikage",
-    ];
+    "Dango Daikazoku",
+    "Determination",
+    "Dogsong",
+    "Doki Doki Literature Club",
+    "Eternal East Wind",
+    "Grasswalk",
+    "Nagisa",
+    "Nuit Silencieuse",
+    "Okay Everyone",
+    "Once Upon A Time",
+    "Orange",
+    "Distortion",
+    "Haruhikage",
+  ];
 
   const [option, setOption] = useState<"example" | "file">("example");
   const [exampleName, setExampleName] = useState("Doki Doki Literature Club");
@@ -31,7 +34,10 @@ const FileLoader: React.FC<FileLoaderProps> = ({ onChangeFile, writeConsole }) =
     const lines = text.split("\n");
     let idx = 0;
 
-    while (idx < lines.length && (lines[idx].length === 0 || lines[idx][0] === "#")) {
+    while (
+      idx < lines.length &&
+      (lines[idx].length === 0 || lines[idx][0] === "#")
+    ) {
       idx++;
     }
 
@@ -141,7 +147,9 @@ const FileLoader: React.FC<FileLoaderProps> = ({ onChangeFile, writeConsole }) =
           <input
             type="file"
             id="fileInput"
-            onChange={(e) => setFilename(e.target.files ? e.target.files[0] : null)}
+            onChange={(e) =>
+              setFilename(e.target.files ? e.target.files[0] : null)
+            }
           />
         </div>
       )}
