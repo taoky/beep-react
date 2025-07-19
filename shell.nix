@@ -2,7 +2,7 @@
 
 with pkgs; mkShell {
     buildInputs = [
-        nodejs-18_x
-        yarn
+        nodejs_22
+        nodePackages.pnpm
     ];
 }
