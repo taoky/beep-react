@@ -54,14 +54,20 @@ const Player: React.FC<PlayerProps> = ({
   const [oscillatorType, setOscillatorType] = useState<OscillatorType>("sine");
   const [playing, setPlaying] = useState(false);
   const prevCounterRef = useRef<number>(counter);
+  const oscillatorTypeRef = useRef<OscillatorType>(oscillatorType);
 
   useEffect(() => {
-    if (prevCounterRef.current !== counter) {
+    if (prevCounterRef.current && prevCounterRef.current !== counter) {
       pause();
       noteStack.current = null;
-      prevCounterRef.current = counter;
     }
+
+    prevCounterRef.current = counter;
   }, [counter]);
+
+  useEffect(() => {
+    oscillatorTypeRef.current = oscillatorType;
+  }, [oscillatorType]);
 
   const getDuration = (relativeDuration: number): number =>
     (relativeDuration * 60) / (bpm * 16);
@@ -90,7 +96,7 @@ const Player: React.FC<PlayerProps> = ({
     if (!audioContextRef.current) return;
     const oscillator = audioContextRef.current.createOscillator();
     const gain = gainNodeRef.current!;
-    oscillator.type = oscillatorType;
+    oscillator.type = oscillatorTypeRef.current;
     oscillator.frequency.value = frequency;
     oscillator.connect(gain).connect(audioContextRef.current.destination);
     oscillator.onended = callback;
@@ -101,6 +107,7 @@ const Player: React.FC<PlayerProps> = ({
 
   const playMelody = async () => {
     if (!noteStack.current || noteStack.current.length === 0) {
+      setPlaying(false);
       return;
     }
     let note = noteStack.current.pop()!;
@@ -133,6 +140,10 @@ const Player: React.FC<PlayerProps> = ({
     }
     if (!noteStack.current || noteStack.current.length === 0) {
       noteStack.current = [...notes].reverse();
+    }
+    if (noteStack.current.length === 0) {
+      writeConsole("No notes to play. Please load first.");
+      return;
     }
 
     await playMelody();
