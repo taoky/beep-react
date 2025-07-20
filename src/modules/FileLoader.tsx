@@ -138,7 +138,7 @@ const FileLoader: React.FC<FileLoaderProps> = ({
         <select
           onChange={(e) => setExampleName(e.target.value)}
           value={exampleName}
-          className="border border-gray-300 rounded px-3 py-2"
+          className="border border-gray-300 rounded px-3 py-2 w-full"
         >
           {exampleList.map((example) => (
             <option key={example} value={example}>
@@ -164,7 +164,7 @@ const FileLoader: React.FC<FileLoaderProps> = ({
 
       <button
         onClick={load}
-        className="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+        className="w-32 mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
       >
         Load
       </button>
