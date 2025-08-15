@@ -136,7 +136,7 @@ const FileLoader: React.FC<FileLoaderProps> = ({
 
       {option === "example" ? (
         <select
-          onChange={(e) => setExampleName(e.target.value)}
+          onChange={(e) => setExampleName(e.currentTarget.value)}
           value={exampleName}
           className="border border-gray-300 rounded px-3 py-2 w-full"
         >
@@ -155,7 +155,7 @@ const FileLoader: React.FC<FileLoaderProps> = ({
             type="file"
             id="fileInput"
             onChange={(e) =>
-              setFilename(e.target.files ? e.target.files[0] : null)
+              setFilename(e.currentTarget.files ? e.currentTarget.files[0] : null)
             }
             className="border border-gray-300 px-2 py-1 rounded"
           />

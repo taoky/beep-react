@@ -179,7 +179,7 @@ const Player: React.FC<PlayerProps> = ({
           type="range"
           id="volume"
           value={volume}
-          onChange={(e) => setGain(parseFloat(e.target.value))}
+          onChange={(e) => setGain(parseFloat(e.currentTarget.value))}
           min={0}
           max={1}
           step={0.01}
@@ -191,7 +191,7 @@ const Player: React.FC<PlayerProps> = ({
         <label className="mb-1 font-medium">Oscillator Type</label>
         <select
           value={oscillatorType}
-          onChange={(e) => setOscillatorType(e.target.value as OscillatorType)}
+          onChange={(e) => setOscillatorType(e.currentTarget.value as OscillatorType)}
           className="border border-gray-300 rounded px-3 py-2"
         >
           <option value="square">Square</option>
