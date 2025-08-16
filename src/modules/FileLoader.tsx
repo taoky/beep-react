@@ -1,12 +1,13 @@
-import React, { useState } from "react";
 import { Key } from "./Player";
+import type { FunctionComponent } from "preact";
+import { useState } from "preact/hooks";
 
 interface FileLoaderProps {
   onChangeFile: (bpm: number, off: number, notes: [Key, number][]) => void;
   writeConsole: (msg: string) => void;
 }
 
-const FileLoader: React.FC<FileLoaderProps> = ({
+const FileLoader: FunctionComponent<FileLoaderProps> = ({
   onChangeFile,
   writeConsole,
 }) => {
@@ -118,7 +119,7 @@ const FileLoader: React.FC<FileLoaderProps> = ({
             value="example"
             name="example"
             checked={option === "example"}
-            onChange={() => setOption("example")}
+            onInput={() => setOption("example")}
           />
           Example
         </label>
@@ -128,7 +129,7 @@ const FileLoader: React.FC<FileLoaderProps> = ({
             value="file"
             name="example"
             checked={option === "file"}
-            onChange={() => setOption("file")}
+            onInput={() => setOption("file")}
           />
           File
         </label>
@@ -136,7 +137,7 @@ const FileLoader: React.FC<FileLoaderProps> = ({
 
       {option === "example" ? (
         <select
-          onChange={(e) => setExampleName(e.currentTarget.value)}
+          onInput={(e) => setExampleName(e.currentTarget.value)}
           value={exampleName}
           className="border border-gray-300 rounded px-3 py-2 w-full"
         >
@@ -154,7 +155,7 @@ const FileLoader: React.FC<FileLoaderProps> = ({
           <input
             type="file"
             id="fileInput"
-            onChange={(e) =>
+            onInput={(e) =>
               setFilename(e.currentTarget.files ? e.currentTarget.files[0] : null)
             }
             className="border border-gray-300 px-2 py-1 rounded"

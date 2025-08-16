@@ -1,16 +1,17 @@
 import FileLoader from "./modules/FileLoader";
 import type { Note } from "./modules/Player";
 import Player from "./modules/Player";
-import React, { useEffect, useState } from "react";
+import type { FunctionComponent } from "preact";
+import { useRef, useState, useEffect } from "preact/hooks";
 
-const App: React.FC = () => {
+const App: FunctionComponent = () => {
   const [bpm, setBpm] = useState<number>(0);
   const [off, setOff] = useState<number>(0);
   const [notes, setNotes] = useState<Note[]>([]);
   const [counter, setCounter] = useState(0);
   const [consoleText, setConsoleText] = useState("");
 
-  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const onChangeFile = (bpm: number, off: number, notes: Note[]) => {
     setBpm(bpm);
